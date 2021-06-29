@@ -7,10 +7,10 @@ from yt_concate.pipeline.steps.step import StepException
 class DownloadCaptions(Step):
     def process(self, data, inputs, utils):
         for yt in data:
-            print('downloading caption for', yt.id)
             if utils.caption_file_exists(yt):
-                print('found existing caption file')
+                print('found existing caption file for', yt.id)
                 continue
+            print('downloading caption for', yt.id)
             try:
                 source = YouTube(yt.url)
                 en_caption = source.captions.get_by_language_code('a.en')
