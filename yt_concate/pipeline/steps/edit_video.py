@@ -1,3 +1,5 @@
+import logging
+
 from moviepy.editor import VideoFileClip
 from moviepy.editor import concatenate_videoclips
 
@@ -6,6 +8,8 @@ from yt_concate.pipeline.steps.step import Step
 
 class EditVideo(Step):
     def process(self, data, inputs, utils):
+        logger = logging.getLogger(f'main.{__name__}')
+        logger.info('in EditVideo')
         clips = []
         for found in data:
             start, end = self.parse_caption_time(found.time)
